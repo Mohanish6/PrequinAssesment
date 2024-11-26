@@ -1,0 +1,33 @@
+<div class="investor-list">
+    <h2>Investor List</h2>
+  
+    <!-- Error Message -->
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+  
+    <!-- Investors Table -->
+    <table *ngIf="investors.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Total Commitments</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let investor of investors">
+          <td>{{ investor.id }}</td>
+          <td>{{ investor.name }}</td>
+          <td>{{ investor.totalCommitments | currency:'GBP' }}</td>
+          <td>
+            <button (click)="onSelectInvestor(investor.id)">View Commitments</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No Investors Found -->
+    <p *ngIf="investors.length === 0 && !error">No investors found.</p>
+  </div>
